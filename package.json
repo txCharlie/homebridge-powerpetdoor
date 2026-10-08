@@ -1,0 +1,45 @@
+{
+  "name": "homebridge-powerpetdoor",
+  "displayName": "Power Pet Door",
+  "version": "0.1.0",
+  "description": "Control High Tech Pet Power Pet Wi-Fi doors from Apple Home, locally, with no cloud.",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Charlie Haley",
+  "keywords": [
+    "homebridge-plugin",
+    "homebridge",
+    "homekit",
+    "power pet",
+    "power pet door",
+    "high tech pet",
+    "pet door",
+    "dog door"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CHANGE-ME/homebridge-powerpetdoor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CHANGE-ME/homebridge-powerpetdoor/issues"
+  },
+  "homepage": "https://github.com/CHANGE-ME/homebridge-powerpetdoor#readme",
+  "engines": {
+    "homebridge": "^1.8.0 || ^2.0.0",
+    "node": "^18.20.0 || ^20.15.0 || ^22.0.0 || ^24.0.0"
+  },
+  "files": [
+    "index.js",
+    "lib/",
+    "config.schema.json",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "devDependencies": {
+    "homebridge": "^2.0.0"
+  }
+}

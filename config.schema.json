@@ -1,0 +1,149 @@
+{
+  "pluginAlias": "PowerPetDoor",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "Control High Tech Pet **Power Pet** Wi-Fi doors from Apple Home over your local network. Give each door a fixed IP address in your router first.",
+  "footerDisplay": "Not affiliated with or endorsed by High Tech Pet Products, Inc.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Platform Name",
+        "type": "string",
+        "default": "Power Pet Door",
+        "required": true
+      },
+      "doors": {
+        "title": "Doors",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Name",
+              "type": "string",
+              "default": "Pet Door",
+              "required": true
+            },
+            "host": {
+              "title": "IP Address",
+              "type": "string",
+              "format": "hostname",
+              "placeholder": "192.168.1.50",
+              "required": true
+            },
+            "port": {
+              "title": "Port",
+              "type": "integer",
+              "default": 3000,
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "openMode": {
+              "title": "When opened from Apple Home",
+              "type": "string",
+              "default": "timed",
+              "oneOf": [
+                { "title": "Open, then close automatically after the door's hold time", "enum": ["timed"] },
+                { "title": "Open and stay open until closed", "enum": ["hold"] }
+              ]
+            },
+            "exposeActivitySensor": {
+              "title": "Activity sensor (for \"door opened\" notifications)",
+              "type": "boolean",
+              "default": true
+            },
+            "exposeInsideSensor": {
+              "title": "Inside sensor switch",
+              "type": "boolean",
+              "default": true
+            },
+            "exposeOutsideSensor": {
+              "title": "Outside sensor switch",
+              "type": "boolean",
+              "default": true
+            },
+            "exposePower": {
+              "title": "Power switch",
+              "type": "boolean",
+              "default": false
+            },
+            "exposeSchedule": {
+              "title": "Schedule switch",
+              "type": "boolean",
+              "default": false
+            },
+            "exposeBattery": {
+              "title": "Battery status (when a battery is installed)",
+              "type": "boolean",
+              "default": true
+            },
+            "statusPollSeconds": {
+              "title": "Door status check interval (seconds)",
+              "type": "integer",
+              "default": 30,
+              "minimum": 5
+            },
+            "settingsPollSeconds": {
+              "title": "Settings check interval (seconds)",
+              "type": "integer",
+              "default": 120,
+              "minimum": 15
+            },
+            "batteryPollSeconds": {
+              "title": "Battery check interval (seconds)",
+              "type": "integer",
+              "default": 600,
+              "minimum": 60
+            },
+            "timeoutSeconds": {
+              "title": "Command timeout (seconds)",
+              "type": "integer",
+              "default": 10,
+              "minimum": 2,
+              "maximum": 60
+            }
+          }
+        }
+      }
+    }
+  },
+  "layout": [
+    "name",
+    {
+      "key": "doors",
+      "type": "array",
+      "buttonText": "Add Door",
+      "items": [
+        "doors[].name",
+        "doors[].host",
+        "doors[].openMode",
+        {
+          "type": "fieldset",
+          "title": "Accessories to show in Apple Home",
+          "expandable": true,
+          "items": [
+            "doors[].exposeActivitySensor",
+            "doors[].exposeInsideSensor",
+            "doors[].exposeOutsideSensor",
+            "doors[].exposePower",
+            "doors[].exposeSchedule",
+            "doors[].exposeBattery"
+          ]
+        },
+        {
+          "type": "fieldset",
+          "title": "Advanced",
+          "expandable": true,
+          "items": [
+            "doors[].port",
+            "doors[].statusPollSeconds",
+            "doors[].settingsPollSeconds",
+            "doors[].batteryPollSeconds",
+            "doors[].timeoutSeconds"
+          ]
+        }
+      ]
+    }
+  ]
+}

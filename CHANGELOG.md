@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.4
+
+- Fix: switch names could get stuck as "Switch", "Switch 2", and so on. The
+  Home app can save its own generic labels back into the accessory, and
+  earlier versions kept them as if you'd chosen them. Generic labels are now
+  replaced with the real names (including on existing installs, at the next
+  restart), while names you pick in the Home app are still kept.
+
 ## 0.2.3
 
 - Fix: the Home app showed the door's switches as "Switch", "Switch 2", and

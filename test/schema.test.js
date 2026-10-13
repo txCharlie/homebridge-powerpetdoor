@@ -29,3 +29,12 @@ test('every door field in the schema appears in the layout', () => {
     assert.ok(keys.includes(`doors[].${p}`), `${p} is in the layout`);
   }
 });
+
+// A number with both a minimum and a maximum renders as a slider in the
+// Homebridge settings screen; keep them all as plain number boxes.
+test('no number field renders as a slider', () => {
+  const props = schema.schema.properties.doors.items.properties;
+  for (const [key, def] of Object.entries(props)) {
+    assert.ok(!('minimum' in def && 'maximum' in def), `${key} has both minimum and maximum`);
+  }
+});

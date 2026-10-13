@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2
+
+- The port setting is now a number box instead of a slider. An invalid port
+  falls back to the door's default (3000).
+
 ## 0.2.1
 
 - Fix: opening and saving the plugin settings added a blank door for each

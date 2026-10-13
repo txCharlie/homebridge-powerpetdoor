@@ -36,8 +36,7 @@
               "title": "Port",
               "type": "integer",
               "default": 3000,
-              "minimum": 1,
-              "maximum": 65535
+              "minimum": 1
             },
             "openMode": {
               "title": "When opened from Apple Home",

@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.0.0
+
+First public release. Control High Tech Pet Power Pet Wi-Fi doors from
+Apple Home over your local network, with no cloud account.
+
+- **Door**: open and close from Apple Home or Siri, with live position.
+- **Activity sensor**: a contact sensor for "the dog just went out" alerts.
+- **Inside Sensor and Outside Sensor** switches, plus optional **Power** and
+  **Schedule** switches, and **battery** status when a battery is installed.
+- **On/off switch**: a separate accessory for "Hey Siri, turn off the dog
+  door", with a choice of what "off" means (power, inside sensor, or both
+  sensors).
+- **Chatter guard**: pauses the inside, outside, or both sensors for a while
+  when the door keeps opening, for example while a pet eats next to it.
+- **Door schedule**: leave the door's built-in schedule alone, turn it off
+  for Apple Home automations, or set it from the plugin settings.
+- Names stay as set in the plugin settings; a rename in the Home app is kept.
+- Reconnects on its own and shows No Response while the door is offline.
+
+Unchanged from 0.3.2.
+
 ## 0.3.2
 
 - Packaging only: added the `supports-hap` keyword for the Homebridge plugin

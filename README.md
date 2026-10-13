@@ -71,8 +71,8 @@ The door pushes its status to the plugin as it moves, so the Home app updates wi
 | `chatterPauseMinutes` | `5` | How long to pause. |
 | `chatterSensor` | `inside` | Which sensor to pause: `inside`, `outside`, or `both`. |
 | `exposeChatterGuardSwitch` | `true` | Show a switch to turn the chatter guard on and off. |
-| `manageSchedule` | `false` | Set the door's schedule from the plugin settings (see below). |
-| `schedules` | *(none)* | The times each sensor works, when `manageSchedule` is on. |
+| `scheduleMode` | `leave` | What to do with the door's own schedule: `leave` it alone, turn it `off` (for Apple Home automations), or `manage` it from `schedules` (see below). |
+| `schedules` | *(none)* | The times each sensor works, with `scheduleMode: "manage"`. |
 | `statusPollSeconds` | `30` | Backup status check. Status normally arrives instantly from the door. |
 | `settingsPollSeconds` | `120` | How often to re-read sensor, power, and schedule settings, to catch changes made in the door's own app or keypad. |
 | `batteryPollSeconds` | `600` | How often to read the battery. |
@@ -112,13 +112,19 @@ Power Pet doors have a built-in schedule that decides when each sensor works. It
 
 While the master switch is on, the door enforces its schedule by turning the sensors on and off itself. That can undo changes made from Apple Home: for example, the door may turn a sensor you switched off straight back on.
 
-**If you'd rather run schedules with Apple Home automations, turn the door's schedule off.** Show the **Schedule** switch (`exposeSchedule: true`), turn it off once, then hide it again if you like. You can also turn it off in High Tech Pet's app. Then build schedules as Home app automations, for example "At 10:00 PM, turn off Outside Sensor" and "At 6:30 AM, turn it on". Automations can also use sunrise, sunset, or whether anyone is home.
+Choose what the plugin does with it under **Door schedule** in the plugin settings (`scheduleMode`):
 
-Keep the door's schedule on if you'd rather it run on the door itself, which keeps working even if Homebridge or your Wi-Fi is down. The chatter guard and the on/off switch both work either way: when they need a sensor off, they pause the door's schedule for that time and resume it afterwards.
+| Choice | What happens |
+|---|---|
+| **Leave it alone** *(default)* | The plugin never touches the door's schedule. |
+| **Turn it off: I'll use Apple Home automations** *(recommended if you schedule with Apple Home)* | The plugin turns the door's schedule off each time Homebridge starts. Any schedule saved on the door is kept, just not used. Then build schedules as Home app automations, for example "At 10:00 PM, turn off Outside Sensor" and "At 6:30 AM, turn it on". Automations can also use sunrise, sunset, or whether anyone is home. |
+| **Set it here** | You list the times each sensor works, and the plugin writes them to the door (below). |
+
+Keep the door's own schedule (**Leave it alone** or **Set it here**) if you'd rather it run on the door itself, which keeps working even if Homebridge or your Wi-Fi is down. The chatter guard and the on/off switch work either way: when they need a sensor off, they pause the door's schedule for that time and resume it afterwards.
 
 ### Setting the door's schedule here
 
-Open **Door schedule** in the plugin settings, tick **Set the door's schedule here**, and add the times each sensor should work. For example:
+Choose **Set it here** under **Door schedule**, and add the times each sensor should work. For example:
 
 | Sensor | Days | From | Until |
 |---|---|---|---|
@@ -129,8 +135,8 @@ Open **Door schedule** in the plugin settings, tick **Set the door's schedule he
 - A time that crosses midnight works as you'd expect: 10:00 PM until 6:00 AM on Friday runs through to Saturday morning.
 - If you only list times for one sensor, the other works all day. (Otherwise a door with a schedule would lock that sensor out completely.)
 - **This replaces any schedule set in High Tech Pet's app.** The plugin writes the schedule to the door when Homebridge starts, and again whenever it reconnects if someone changed it elsewhere.
-- With the box ticked and no times listed, the plugin clears the door's schedule and turns it off: the setup to use if Apple Home automations run your schedules.
-- The plugin also turns the door's schedule on (or off) when Homebridge starts. If you switch it off later with the Schedule switch in Apple Home, it stays off until the next restart.
+- With no times listed, the plugin leaves the door's schedule as it is and says so in the log. To stop the door's schedule, choose **Turn it off** instead.
+- The plugin also turns the door's schedule on when Homebridge starts. If you switch it off later with the Schedule switch in Apple Home, it stays off until the next restart.
 - The door keeps time with its own clock, set from the time zone in High Tech Pet's app.
 - A mistake in a time (such as 25:00) is reported in the Homebridge log, and the door's schedule is left as it was until it's fixed.
 

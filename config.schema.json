@@ -148,11 +148,31 @@
               "type": "boolean",
               "default": true
             },
-            "manageSchedule": {
-              "title": "Set the door's schedule here",
-              "type": "boolean",
-              "default": false,
-              "description": "Replaces any schedule set in High Tech Pet's app. Each sensor works only during its times below. With no times listed, the door's schedule is turned off."
+            "scheduleMode": {
+              "title": "Door's schedule",
+              "type": "string",
+              "default": "leave",
+              "oneOf": [
+                {
+                  "title": "Leave it alone",
+                  "enum": [
+                    "leave"
+                  ]
+                },
+                {
+                  "title": "Turn it off: I'll use Apple Home automations (recommended)",
+                  "enum": [
+                    "off"
+                  ]
+                },
+                {
+                  "title": "Set it here",
+                  "enum": [
+                    "manage"
+                  ]
+                }
+              ],
+              "description": "Power Pet doors have their own schedule, often switched on from the factory. While it's on, the door turns the sensors on and off itself, which can undo changes made in Apple Home. If you schedule the door with Home app automations (for example, turn off Outside Sensor at 10 PM), choose Turn it off."
             },
             "schedules": {
               "title": "Times each sensor works",
@@ -211,7 +231,8 @@
                     "type": "string"
                   }
                 }
-              }
+              },
+              "description": "Replaces any schedule set in High Tech Pet's app."
             },
             "exposeActivitySensor": {
               "title": "Activity sensor (for \"door opened\" notifications)",
@@ -314,7 +335,7 @@
               "title": "Door schedule",
               "expandable": true,
               "items": [
-                "doors[].manageSchedule",
+                "doors[].scheduleMode",
                 {
                   "key": "doors[].schedules",
                   "type": "array",
@@ -377,7 +398,10 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "condition": {
+                    "functionBody": "return model.doors && model.doors[arrayIndices[0]] && model.doors[arrayIndices[0]].scheduleMode === 'manage';"
+                  }
                 }
               ]
             },

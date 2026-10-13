@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.1
+
+- Door schedule setting is now a clear choice (`scheduleMode`): **Leave it
+  alone** (default), **Turn it off: I'll use Apple Home automations**, or
+  **Set it here**. The list of times only appears with Set it here.
+  "Turn it off" turns the door's schedule off at each start and keeps any
+  schedule saved on the door. A 0.3.0 config with `manageSchedule: true`
+  still works as Set it here.
+- Set it here with no times listed now leaves the door's schedule alone
+  (with a log message) instead of clearing it.
+
 ## 0.3.0
 
 - New: set the door's schedule from the plugin settings (**Door schedule**,

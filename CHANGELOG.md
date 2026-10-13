@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.2
+
+- Packaging only: added the `supports-hap` keyword for the Homebridge plugin
+  list, and updated the test workflow's GitHub Actions.
+
 ## 0.3.1
 
 - Door schedule setting is now a clear choice (`scheduleMode`): **Leave it

@@ -1,13 +1,14 @@
 {
   "name": "homebridge-powerpetdoor",
   "displayName": "Power Pet Door",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Control High Tech Pet Power Pet Wi-Fi doors from Apple Home, locally, with no cloud.",
   "main": "index.js",
   "license": "MIT",
   "author": "Charlie Haley",
   "keywords": [
     "homebridge-plugin",
+    "supports-hap",
     "homebridge",
     "homekit",
     "power pet",

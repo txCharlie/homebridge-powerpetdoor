@@ -148,6 +148,71 @@
               "type": "boolean",
               "default": true
             },
+            "manageSchedule": {
+              "title": "Set the door's schedule here",
+              "type": "boolean",
+              "default": false,
+              "description": "Replaces any schedule set in High Tech Pet's app. Each sensor works only during its times below. With no times listed, the door's schedule is turned off."
+            },
+            "schedules": {
+              "title": "Times each sensor works",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "sensor": {
+                    "title": "Sensor",
+                    "type": "string",
+                    "default": "inside",
+                    "oneOf": [
+                      {
+                        "title": "Inside sensor",
+                        "enum": [
+                          "inside"
+                        ]
+                      },
+                      {
+                        "title": "Outside sensor",
+                        "enum": [
+                          "outside"
+                        ]
+                      },
+                      {
+                        "title": "Both sensors",
+                        "enum": [
+                          "both"
+                        ]
+                      }
+                    ]
+                  },
+                  "days": {
+                    "title": "Days (none ticked = every day)",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "sun",
+                        "mon",
+                        "tue",
+                        "wed",
+                        "thu",
+                        "fri",
+                        "sat"
+                      ]
+                    }
+                  },
+                  "start": {
+                    "title": "From",
+                    "type": "string"
+                  },
+                  "end": {
+                    "title": "Until",
+                    "type": "string"
+                  }
+                }
+              }
+            },
             "exposeActivitySensor": {
               "title": "Activity sensor (for \"door opened\" notifications)",
               "type": "boolean",
@@ -242,6 +307,78 @@
                 "doors[].chatterPauseMinutes",
                 "doors[].chatterSensor",
                 "doors[].exposeChatterGuardSwitch"
+              ]
+            },
+            {
+              "type": "fieldset",
+              "title": "Door schedule",
+              "expandable": true,
+              "items": [
+                "doors[].manageSchedule",
+                {
+                  "key": "doors[].schedules",
+                  "type": "array",
+                  "buttonText": "Add Time",
+                  "items": [
+                    {
+                      "type": "div",
+                      "displayFlex": false,
+                      "items": [
+                        "doors[].schedules[].sensor",
+                        {
+                          "key": "doors[].schedules[].days",
+                          "type": "checkboxes",
+                          "titleMap": [
+                            {
+                              "value": "sun",
+                              "name": "Sun"
+                            },
+                            {
+                              "value": "mon",
+                              "name": "Mon"
+                            },
+                            {
+                              "value": "tue",
+                              "name": "Tue"
+                            },
+                            {
+                              "value": "wed",
+                              "name": "Wed"
+                            },
+                            {
+                              "value": "thu",
+                              "name": "Thu"
+                            },
+                            {
+                              "value": "fri",
+                              "name": "Fri"
+                            },
+                            {
+                              "value": "sat",
+                              "name": "Sat"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "flex",
+                          "flex-flow": "row wrap",
+                          "items": [
+                            {
+                              "key": "doors[].schedules[].start",
+                              "type": "time",
+                              "flex": "1 1 200px"
+                            },
+                            {
+                              "key": "doors[].schedules[].end",
+                              "type": "time",
+                              "flex": "1 1 200px"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
               ]
             },
             {

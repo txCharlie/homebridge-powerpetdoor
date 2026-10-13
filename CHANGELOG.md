@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0
+
+- New: set the door's schedule from the plugin settings (**Door schedule**,
+  `manageSchedule` and `schedules`). Give each sensor the times it works,
+  on chosen days. Times crossing midnight are handled, and a sensor with no
+  times listed works all day. The plugin writes the schedule to the door
+  when Homebridge starts, only when it differs from what's on the door.
+  With no times listed, the door's schedule is cleared and turned off.
+- A chatter pause or the on/off switch that has the door's schedule paused
+  keeps it paused through a schedule update, and resumes it as usual.
+
 ## 0.2.7
 
 - Chatter guard: new "Both sensors" choice for which sensor to pause

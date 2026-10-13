@@ -14,13 +14,36 @@ test('door layout is wrapped in a single container', () => {
   assert.ok(Array.isArray(doors.items[0].items), 'container holds the door fields');
 });
 
+// The same applies to arrays nested inside a door (the schedule list).
+test('nested arrays are wrapped in a single container too', () => {
+  const arrays = [];
+  const walk = (node) => {
+    if (node && typeof node === 'object') {
+      if (node.type === 'array' && node.key !== 'doors') {
+        arrays.push(node);
+      }
+      (node.items || []).forEach(walk);
+    }
+  };
+  walk(schema.layout.find((l) => l && l.key === 'doors'));
+  assert.ok(arrays.length > 0);
+  for (const a of arrays) {
+    assert.strictEqual(a.items.length, 1, `${a.key} has one container`);
+  }
+});
+
 test('every door field in the schema appears in the layout', () => {
   const props = Object.keys(schema.schema.properties.doors.items.properties);
   const keys = [];
   const walk = (node) => {
     if (typeof node === 'string') {
       keys.push(node);
-    } else if (node && Array.isArray(node.items)) {
+      return;
+    }
+    if (node && node.key) {
+      keys.push(node.key);
+    }
+    if (node && Array.isArray(node.items)) {
       node.items.forEach(walk);
     }
   };

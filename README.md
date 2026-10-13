@@ -103,6 +103,16 @@ If a pet lingers near the door, for example while eating at a bowl next to it, t
 
 Turn it on with **Chatter guard** in the plugin settings (`chatterGuard: true`).
 
+## The door's own schedule
+
+Power Pet doors have a built-in schedule that decides when each sensor works. It has a master switch, and **on many doors that switch is on from the factory, even if no schedule was ever set up.**
+
+While the master switch is on, the door enforces its schedule by turning the sensors on and off itself. That can undo changes made from Apple Home: for example, the door may turn a sensor you switched off straight back on.
+
+**If you'd rather run schedules with Apple Home automations, turn the door's schedule off.** Show the **Schedule** switch (`exposeSchedule: true`), turn it off once, then hide it again if you like. You can also turn it off in High Tech Pet's app. Then build schedules as Home app automations, for example "At 10:00 PM, turn off Outside Sensor" and "At 6:30 AM, turn it on". Automations can also use sunrise, sunset, or whether anyone is home.
+
+Keep the door's schedule on if you'd rather it run on the door itself, which keeps working even if Homebridge or your Wi-Fi is down. The chatter guard and the on/off switch both work either way: when they need a sensor off, they pause the door's schedule for that time and resume it afterwards.
+
 ## A word on safety
 
 This plugin can open your door remotely, and Apple Home automations can open it on a schedule. Think through what happens if an automation fires while you're away or the door is left open overnight. The **Outside Sensor** switch is a safer tool than opening the door for most "let the dog out" or "keep the dog in" automations.

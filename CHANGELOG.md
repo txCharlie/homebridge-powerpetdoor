@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.6
+
+- Chatter guard: a report that the paused sensor is back on is now
+  double-checked with the door a few seconds later before the pause is
+  cancelled. Doors can briefly report a stale value right after a change.
+  The log now says which message reported it.
+- Chatter guard: reads the door's settings fresh before pausing, so it
+  knows whether the door's schedule is on.
+- README: new section on the door's own schedule, including when to turn
+  it off.
+
 ## 0.2.5
 
 - Fix: on a door with its schedule turned on, a chatter guard pause ended

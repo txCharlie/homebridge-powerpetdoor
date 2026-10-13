@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1
+
+- Fix: opening and saving the plugin settings added a blank door for each
+  collapsible section. The door's settings are now kept together in one
+  card, so they always save to the right door.
+- The chatter guard checkbox is now labeled "Turn on chatter guard".
+
 ## 0.2.0
 
 - New on/off switch for "Hey Siri, turn the dog door off/on", published as

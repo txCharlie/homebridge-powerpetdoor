@@ -1,7 +1,7 @@
 {
   "name": "homebridge-powerpetdoor",
   "displayName": "Power Pet Door",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Control High Tech Pet Power Pet Wi-Fi doors from Apple Home, locally, with no cloud.",
   "main": "index.js",
   "license": "MIT",

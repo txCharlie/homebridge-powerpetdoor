@@ -59,7 +59,7 @@
               ]
             },
             "exposeOnOffSwitch": {
-              "title": "On/off switch (for \"Hey Siri, turn the door off\")",
+              "title": "Show the on/off switch (for \"Hey Siri, turn the door off\")",
               "type": "boolean",
               "default": true
             },
@@ -95,7 +95,7 @@
               ]
             },
             "chatterGuard": {
-              "title": "Chatter guard",
+              "title": "Turn on chatter guard",
               "type": "boolean",
               "default": false,
               "description": "Pause a sensor when the door keeps opening, for example while a pet eats next to it."
@@ -208,55 +208,61 @@
       "type": "array",
       "buttonText": "Add Door",
       "items": [
-        "doors[].name",
-        "doors[].host",
-        "doors[].openMode",
         {
-          "type": "fieldset",
-          "title": "On/off switch",
-          "expandable": true,
+          "type": "div",
+          "displayFlex": false,
           "items": [
-            "doors[].exposeOnOffSwitch",
-            "doors[].onOffSwitchName",
-            "doors[].onOffMode"
-          ]
-        },
-        {
-          "type": "fieldset",
-          "title": "Chatter guard",
-          "expandable": true,
-          "items": [
-            "doors[].chatterGuard",
-            "doors[].chatterOpens",
-            "doors[].chatterWindowSeconds",
-            "doors[].chatterPauseMinutes",
-            "doors[].chatterSensor",
-            "doors[].exposeChatterGuardSwitch"
-          ]
-        },
-        {
-          "type": "fieldset",
-          "title": "Accessories to show in Apple Home",
-          "expandable": true,
-          "items": [
-            "doors[].exposeActivitySensor",
-            "doors[].exposeInsideSensor",
-            "doors[].exposeOutsideSensor",
-            "doors[].exposePower",
-            "doors[].exposeSchedule",
-            "doors[].exposeBattery"
-          ]
-        },
-        {
-          "type": "fieldset",
-          "title": "Advanced",
-          "expandable": true,
-          "items": [
-            "doors[].port",
-            "doors[].statusPollSeconds",
-            "doors[].settingsPollSeconds",
-            "doors[].batteryPollSeconds",
-            "doors[].timeoutSeconds"
+            "doors[].name",
+            "doors[].host",
+            "doors[].openMode",
+            {
+              "type": "fieldset",
+              "title": "On/off switch",
+              "expandable": true,
+              "items": [
+                "doors[].exposeOnOffSwitch",
+                "doors[].onOffSwitchName",
+                "doors[].onOffMode"
+              ]
+            },
+            {
+              "type": "fieldset",
+              "title": "Chatter guard",
+              "expandable": true,
+              "items": [
+                "doors[].chatterGuard",
+                "doors[].chatterOpens",
+                "doors[].chatterWindowSeconds",
+                "doors[].chatterPauseMinutes",
+                "doors[].chatterSensor",
+                "doors[].exposeChatterGuardSwitch"
+              ]
+            },
+            {
+              "type": "fieldset",
+              "title": "Accessories to show in Apple Home",
+              "expandable": true,
+              "items": [
+                "doors[].exposeActivitySensor",
+                "doors[].exposeInsideSensor",
+                "doors[].exposeOutsideSensor",
+                "doors[].exposePower",
+                "doors[].exposeSchedule",
+                "doors[].exposeBattery"
+              ]
+            },
+            {
+              "type": "fieldset",
+              "title": "Advanced",
+              "expandable": true,
+              "items": [
+                "doors[].port",
+                "doors[].statusPollSeconds",
+                "doors[].settingsPollSeconds",
+                "doors[].batteryPollSeconds",
+                "doors[].timeoutSeconds"
+              ]
+            }
           ]
         }
       ]

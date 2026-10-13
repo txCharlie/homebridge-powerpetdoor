@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.7
+
+- Chatter guard: new "Both sensors" choice for which sensor to pause
+  (`chatterSensor: "both"`). Use it when the outside sensor picks up a
+  collar through the door, so pausing only the inside sensor isn't enough.
+- Chatter guard: only sensors that are on when a pause starts are paused,
+  so a pause never turns on a sensor that was off.
+- Chatter guard: taking over one paused sensor by hand leaves the other
+  paused until the pause ends.
+
 ## 0.2.6
 
 - Chatter guard: a report that the paused sensor is back on is now

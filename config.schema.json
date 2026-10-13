@@ -133,8 +133,15 @@
                   "enum": [
                     "outside"
                   ]
+                },
+                {
+                  "title": "Both sensors",
+                  "enum": [
+                    "both"
+                  ]
                 }
-              ]
+              ],
+              "description": "Both sensors also stops the outside sensor from picking up a collar through the door. A pet outside when a pause starts waits until it ends to come in."
             },
             "exposeChatterGuardSwitch": {
               "title": "Chatter guard switch in Apple Home",

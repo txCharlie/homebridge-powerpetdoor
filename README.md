@@ -69,7 +69,7 @@ The door pushes its status to the plugin as it moves, so the Home app updates wi
 | `chatterOpens` | `5` | Openings that trigger a pause. |
 | `chatterWindowSeconds` | `60` | ...within this many seconds. |
 | `chatterPauseMinutes` | `5` | How long to pause. |
-| `chatterSensor` | `inside` | Which sensor to pause: `inside` or `outside`. |
+| `chatterSensor` | `inside` | Which sensor to pause: `inside`, `outside`, or `both`. |
 | `exposeChatterGuardSwitch` | `true` | Show a switch to turn the chatter guard on and off. |
 | `statusPollSeconds` | `30` | Backup status check. Status normally arrives instantly from the door. |
 | `settingsPollSeconds` | `120` | How often to re-read sensor, power, and schedule settings, to catch changes made in the door's own app or keypad. |
@@ -95,9 +95,10 @@ Turning the switch on always restores power as well. In the `inside` and `sensor
 If a pet lingers near the door, for example while eating at a bowl next to it, the door can cycle up and down over and over. The chatter guard notices and pauses one sensor for a while:
 
 - If the door opens **5 times within 60 seconds** (`chatterOpens`, `chatterWindowSeconds`), the **inside sensor** (`chatterSensor`) is turned off for **5 minutes** (`chatterPauseMinutes`), then turned back on.
+- If your pet can still open the door during a pause, the outside sensor is probably picking up the collar through the door. Lower the outside sensor's range in High Tech Pet's app, or set `chatterSensor` to `both`. With `both`, a pet that's outside when a pause starts has to wait for it to end to come back in.
 - Openings you trigger from Apple Home don't count. A door held open by a pet standing in the doorway counts as one opening, not many.
 - The pause survives restarts: if Homebridge restarts mid-pause, it still ends on time.
-- Changing that sensor yourself, or using the on/off switch, takes over from the guard, so a pause never undoes something you asked for.
+- Changing a paused sensor yourself, or using the on/off switch, takes over from the guard, so a pause never undoes something you asked for.
 - Each pause is logged, so you can see how often it happens.
 - If the door's own schedule is on, it's paused along with the sensor and resumed afterwards. A door enforces its schedule by switching the sensors itself, which would otherwise undo the pause within seconds.
 

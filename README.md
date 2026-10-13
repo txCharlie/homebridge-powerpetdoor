@@ -14,6 +14,8 @@ Control **High Tech Pet Power Pet** Wi-Fi doors from Apple Home, directly over y
 | **Power** switch *(optional)* | Turn the door's motor on or off. |
 | **Schedule** switch *(optional)* | Turn the door's built-in schedule on or off. |
 | **Battery** | Battery level, low-battery warning, and charging state. Added automatically only if the door has a battery installed. |
+| **On/off switch** | One switch for "Hey Siri, turn the dog door off" (or on). It's a separate accessory, so Siri can't confuse it with the other switches. You choose what "off" means: power off, inside sensor off, or both sensors off. |
+| **Chatter Guard** switch *(when enabled)* | Turns the chatter guard (below) on or off. |
 
 The door pushes its status to the plugin as it moves, so the Home app updates within a second. If the door drops off the network, its tiles show **No Response** until it reconnects, and the plugin keeps retrying on its own.
 
@@ -60,10 +62,45 @@ The door pushes its status to the plugin as it moves, so the Home app updates wi
 | `exposePower` | `false` | Show the power switch. |
 | `exposeSchedule` | `false` | Show the schedule switch. |
 | `exposeBattery` | `true` | Show battery status when a battery is installed. |
+| `exposeOnOffSwitch` | `true` | Show the on/off switch. |
+| `onOffSwitchName` | *door name* + " Switch" | Name for the on/off switch (what you say to Siri). |
+| `onOffMode` | `power` | What "off" means: `power`, `inside`, or `sensors`. |
+| `chatterGuard` | `false` | Turn on the chatter guard. |
+| `chatterOpens` | `5` | Openings that trigger a pause. |
+| `chatterWindowSeconds` | `60` | ...within this many seconds. |
+| `chatterPauseMinutes` | `5` | How long to pause. |
+| `chatterSensor` | `inside` | Which sensor to pause: `inside` or `outside`. |
+| `exposeChatterGuardSwitch` | `true` | Show a switch to turn the chatter guard on and off. |
 | `statusPollSeconds` | `30` | Backup status check. Status normally arrives instantly from the door. |
 | `settingsPollSeconds` | `120` | How often to re-read sensor, power, and schedule settings, to catch changes made in the door's own app or keypad. |
 | `batteryPollSeconds` | `600` | How often to read the battery. |
 | `timeoutSeconds` | `10` | How long to wait for the door to answer a command. |
+
+## The on/off switch and Siri
+
+Give the switch the name you'll say to Siri, such as **Dog Door**, in the plugin settings (`onOffSwitchName`). Then "Hey Siri, turn off the dog door" and "turn on the dog door" do exactly one thing.
+
+Use a different name for the door's main accessory in the Home app (for example **Pet Door**). If both share a name, Siri may act on the wrong one.
+
+| `onOffMode` | When off |
+|---|---|
+| `power` *(default)* | The door's power is off. Nothing goes in or out. |
+| `inside` | The inside sensor is off. Pets stay in, but a pet outside can still come back in. |
+| `sensors` | Both sensors are off. The door won't open for any collar. |
+
+Turning the switch on always restores power as well.
+
+## Chatter guard
+
+If a pet lingers near the door, for example while eating at a bowl next to it, the door can cycle up and down over and over. The chatter guard notices and pauses one sensor for a while:
+
+- If the door opens **5 times within 60 seconds** (`chatterOpens`, `chatterWindowSeconds`), the **inside sensor** (`chatterSensor`) is turned off for **5 minutes** (`chatterPauseMinutes`), then turned back on.
+- Openings you trigger from Apple Home don't count. A door held open by a pet standing in the doorway counts as one opening, not many.
+- The pause survives restarts: if Homebridge restarts mid-pause, it still ends on time.
+- Changing that sensor yourself, or using the on/off switch, takes over from the guard, so a pause never undoes something you asked for.
+- Each pause is logged, so you can see how often it happens.
+
+Turn it on with **Chatter guard** in the plugin settings (`chatterGuard: true`).
 
 ## A word on safety
 

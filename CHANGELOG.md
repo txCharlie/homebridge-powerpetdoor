@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.3
+
+- Fix: the Home app showed the door's switches as "Switch", "Switch 2", and
+  so on. Controls are now named on their own ("Inside Sensor", "Power",
+  "Chatter Guard"), since the Home app already shows them under the
+  accessory's name. Existing installs are renamed automatically, except for
+  any control you've renamed yourself in the Home app.
+
 ## 0.2.2
 
 - The port setting is now a number box instead of a slider. An invalid port

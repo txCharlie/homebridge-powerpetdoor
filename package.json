@@ -18,12 +18,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CHANGE-ME/homebridge-powerpetdoor.git"
+    "url": "git+https://github.com/txCharlie/homebridge-powerpetdoor.git"
   },
   "bugs": {
-    "url": "https://github.com/CHANGE-ME/homebridge-powerpetdoor/issues"
+    "url": "https://github.com/txCharlie/homebridge-powerpetdoor/issues"
   },
-  "homepage": "https://github.com/CHANGE-ME/homebridge-powerpetdoor#readme",
+  "homepage": "https://github.com/txCharlie/homebridge-powerpetdoor#readme",
   "engines": {
     "homebridge": "^1.8.0 || ^2.0.0",
     "node": "^18.20.0 || ^20.15.0 || ^22.0.0 || ^24.0.0"

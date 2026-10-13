@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.5
+
+- Fix: on a door with its schedule turned on, a chatter guard pause ended
+  within seconds ("pause cancelled (sensor turned back on outside Apple
+  Home)"). The door enforces its schedule by switching the sensors itself,
+  so the guard now pauses the door's schedule along with the sensor and
+  resumes both afterwards.
+- The same applies to the on/off switch in the inside-sensor and
+  both-sensors modes: "off" pauses the door's schedule, "on" resumes it.
+
 ## 0.2.4
 
 - Fix: switch names could get stuck as "Switch", "Switch 2", and so on. The

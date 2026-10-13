@@ -88,7 +88,7 @@ Use a different name for the door's main accessory in the Home app (for example 
 | `inside` | The inside sensor is off. Pets stay in, but a pet outside can still come back in. |
 | `sensors` | Both sensors are off. The door won't open for any collar. |
 
-Turning the switch on always restores power as well.
+Turning the switch on always restores power as well. In the `inside` and `sensors` modes, turning the switch off also pauses the door's own schedule (if it's on), so the schedule can't turn the sensors back on; turning it on resumes it.
 
 ## Chatter guard
 
@@ -99,6 +99,7 @@ If a pet lingers near the door, for example while eating at a bowl next to it, t
 - The pause survives restarts: if Homebridge restarts mid-pause, it still ends on time.
 - Changing that sensor yourself, or using the on/off switch, takes over from the guard, so a pause never undoes something you asked for.
 - Each pause is logged, so you can see how often it happens.
+- If the door's own schedule is on, it's paused along with the sensor and resumed afterwards. A door enforces its schedule by switching the sensors itself, which would otherwise undo the pause within seconds.
 
 Turn it on with **Chatter guard** in the plugin settings (`chatterGuard: true`).
 

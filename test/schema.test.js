@@ -61,3 +61,24 @@ test('no number field renders as a slider', () => {
     assert.ok(!('minimum' in def && 'maximum' in def), `${key} has both minimum and maximum`);
   }
 });
+
+// Homebridge's verification checks want JSON Schema's standard form: a
+// `required` array on the object, never `required: true` on a field.
+test('required is only ever an array of field names', () => {
+  const walk = (node, path) => {
+    if (Array.isArray(node)) {
+      node.forEach((v, i) => walk(v, `${path}[${i}]`));
+    } else if (node && typeof node === 'object') {
+      if ('required' in node) {
+        assert.ok(Array.isArray(node.required), `${path}.required is an array`);
+      }
+      for (const [k, v] of Object.entries(node)) {
+        if (k !== 'required') {
+          walk(v, `${path}.${k}`);
+        }
+      }
+    }
+  };
+  walk(schema.schema, 'schema');
+  assert.deepStrictEqual(schema.schema.properties.doors.items.required, ['name', 'host']);
+});

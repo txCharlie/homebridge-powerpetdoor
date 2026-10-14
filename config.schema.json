@@ -10,8 +10,7 @@
       "name": {
         "title": "Platform Name",
         "type": "string",
-        "default": "Power Pet Door",
-        "required": true
+        "default": "Power Pet Door"
       },
       "doors": {
         "title": "Doors",
@@ -22,15 +21,13 @@
             "name": {
               "title": "Name",
               "type": "string",
-              "default": "Pet Door",
-              "required": true
+              "default": "Pet Door"
             },
             "host": {
               "title": "IP Address",
               "type": "string",
               "format": "hostname",
-              "placeholder": "192.168.1.50",
-              "required": true
+              "placeholder": "192.168.1.50"
             },
             "port": {
               "title": "Port",
@@ -288,10 +285,17 @@
               "default": 10,
               "minimum": 2
             }
-          }
+          },
+          "required": [
+            "name",
+            "host"
+          ]
         }
       }
-    }
+    },
+    "required": [
+      "name"
+    ]
   },
   "layout": [
     "name",

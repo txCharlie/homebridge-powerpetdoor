@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+- Settings schema: required fields are now listed the standard JSON Schema
+  way (`"required": ["name", "host"]` on the object) instead of
+  `"required": true` on each field. No change to how the settings look.
+
 ## 1.0.1
 
 - Background tasks (chatter guard and door schedule updates) now log any

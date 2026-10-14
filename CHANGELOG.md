@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1
+
+- Background tasks (chatter guard and door schedule updates) now log any
+  unexpected error as a warning, rather than leaving it unhandled.
+
 ## 1.0.0
 
 First public release. Control High Tech Pet Power Pet Wi-Fi doors from

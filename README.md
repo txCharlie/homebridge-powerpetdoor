@@ -1,5 +1,9 @@
 # homebridge-powerpetdoor
 
+[![verified-by-homebridge](https://img.shields.io/badge/homebridge-verified-blueviolet?color=%23491F59&style=flat)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
+[![npm](https://img.shields.io/npm/v/homebridge-powerpetdoor)](https://www.npmjs.com/package/homebridge-powerpetdoor)
+[![npm downloads](https://img.shields.io/npm/dt/homebridge-powerpetdoor)](https://www.npmjs.com/package/homebridge-powerpetdoor)
+
 Control **High Tech Pet Power Pet** Wi-Fi doors from Apple Home, directly over your local network. No cloud account and no extra app.
 
 > Not affiliated with or endorsed by High Tech Pet Products, Inc.
@@ -28,7 +32,7 @@ The door pushes its status to the plugin as it moves, so the Home app updates wi
 ## Setup
 
 1. **Give the door a fixed IP address.** In your router's settings, reserve the door's current address (often called a DHCP reservation). The door's name in your router's device list is usually its MAC address or something generic.
-2. **Install the plugin.** In the Homebridge UI, open **Plugins**, search for **Power Pet Door**, and install it.
+2. **Install the plugin.** In the Homebridge UI, open **Plugins**, search for **Power Pet Door**, and install it. It's a Homebridge Verified plugin.
 3. **Configure it.** Add a door, enter its **name** and **IP address**, and save. Everything else has sensible defaults.
 4. **Restart Homebridge.** Running the plugin as a **child bridge** is recommended; pair the child bridge with the QR code under the plugin's *Bridge Settings*.
 

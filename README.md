@@ -73,6 +73,7 @@ The door pushes its status to the plugin as it moves, so the Home app updates wi
 | `chatterOpens` | `5` | Openings that trigger a pause. |
 | `chatterWindowSeconds` | `60` | ...within this many seconds. |
 | `chatterPauseMinutes` | `5` | How long to pause. |
+| `chatterAction` | `auto` | What a pause does: `auto`, `sensors`, or `power` (see Chatter guard). |
 | `chatterSensor` | `inside` | Which sensor to pause: `inside`, `outside`, or `both`. |
 | `exposeChatterGuardSwitch` | `true` | Show a switch to turn the chatter guard on and off. |
 | `scheduleMode` | `leave` | What to do with the door's own schedule: `leave` it alone, turn it `off` (for Apple Home automations), or `manage` it from `schedules` (see below). |
@@ -98,13 +99,24 @@ Turning the switch on always restores power as well. In the `inside` and `sensor
 
 ## Chatter guard
 
-If a pet lingers near the door, for example while eating at a bowl next to it, the door can cycle up and down over and over. The chatter guard notices and pauses one sensor for a while:
+The door can get stuck cycling up and down over and over in two ways, and the chatter guard notices both:
 
-- If the door opens **5 times within 60 seconds** (`chatterOpens`, `chatterWindowSeconds`), the **inside sensor** (`chatterSensor`) is turned off for **5 minutes** (`chatterPauseMinutes`), then turned back on.
-- If your pet can still open the door during a pause, the outside sensor is probably picking up the collar through the door. Lower the outside sensor's range in High Tech Pet's app, or set `chatterSensor` to `both`. With `both`, a pet that's outside when a pause starts has to wait for it to end to come back in.
+- **A pet lingering near the door**, for example eating at a bowl next to it, keeps setting off the collar sensor.
+- **The door meets resistance as it closes**, for example a worn sweep along the bottom or something caught under the flap. The door's safety feature reverses it, so it reopens by itself, and keeps doing so.
+
+If the door opens **5 times within 60 seconds** (`chatterOpens`, `chatterWindowSeconds`), the guard pauses the door for **5 minutes** (`chatterPauseMinutes`). What a pause does is set by **When the door keeps opening** (`chatterAction`):
+
+| `chatterAction` | During a pause |
+|---|---|
+| `auto` *(default)* | If the door has mostly been reopening by itself as it closes, the **power** is turned off. Otherwise the **sensors** are paused. |
+| `sensors` | The sensor chosen by `chatterSensor` (inside, outside, or both) is turned off. |
+| `power` | The door's power is turned off. |
+
+- Turning the power off is the only thing that stops a door that keeps reversing. A Power Pet door drops closed when its power goes off, so the guard only cuts the power with the door at the bottom (right as it reverses, or once it's closed), never with it raised.
+- If your pet can still open the door while the sensors are paused, the outside sensor is probably picking up the collar through the door. Lower the outside sensor's range in High Tech Pet's app, or set `chatterSensor` to `both`. With `both`, a pet that's outside when a pause starts has to wait for it to end to come back in.
 - Openings you trigger from Apple Home don't count. A door held open by a pet standing in the doorway counts as one opening, not many.
 - The pause survives restarts: if Homebridge restarts mid-pause, it still ends on time.
-- Changing a paused sensor yourself, or using the on/off switch, takes over from the guard, so a pause never undoes something you asked for.
+- Changing a paused sensor or the power yourself, or using the on/off switch, takes over from the guard, so a pause never undoes something you asked for.
 - Each pause is logged, so you can see how often it happens.
 - If the door's own schedule is on, it's paused along with the sensor and resumed afterwards. A door enforces its schedule by switching the sensors itself, which would otherwise undo the pause within seconds.
 

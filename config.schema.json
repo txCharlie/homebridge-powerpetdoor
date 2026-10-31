@@ -94,7 +94,7 @@
               "title": "Turn on chatter guard",
               "type": "boolean",
               "default": false,
-              "description": "Pause a sensor when the door keeps opening, for example while a pet eats next to it."
+              "description": "Pause the door when it keeps opening, for example while a pet eats next to it, or when it keeps reopening as it closes."
             },
             "chatterOpens": {
               "title": "Openings",
@@ -114,8 +114,34 @@
               "default": 5,
               "minimum": 1
             },
+            "chatterAction": {
+              "title": "When the door keeps opening",
+              "type": "string",
+              "default": "auto",
+              "oneOf": [
+                {
+                  "title": "Automatic (recommended)",
+                  "enum": [
+                    "auto"
+                  ]
+                },
+                {
+                  "title": "Pause sensors",
+                  "enum": [
+                    "sensors"
+                  ]
+                },
+                {
+                  "title": "Turn the power off",
+                  "enum": [
+                    "power"
+                  ]
+                }
+              ],
+              "description": "Automatic turns the power off when the door keeps reopening by itself as it closes (for example a worn sweep or something caught under the flap), which pausing the sensors can't stop, and pauses the sensors when a lingering pet keeps opening it. The power is only turned off with the door at the bottom, and is turned back on when the pause ends."
+            },
             "chatterSensor": {
-              "title": "Sensor to pause",
+              "title": "Sensor to pause (when pausing sensors)",
               "type": "string",
               "default": "inside",
               "oneOf": [
@@ -330,6 +356,7 @@
                 "doors[].chatterOpens",
                 "doors[].chatterWindowSeconds",
                 "doors[].chatterPauseMinutes",
+                "doors[].chatterAction",
                 "doors[].chatterSensor",
                 "doors[].exposeChatterGuardSwitch"
               ]

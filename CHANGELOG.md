@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.1.0
+
+- Chatter guard: new **When the door keeps opening** setting
+  (`chatterAction`). The guard can now turn the door's power off for the
+  pause, which stops a door that keeps reversing as it closes (a worn
+  sweep or something caught under the flap). Pausing the sensors can't
+  stop that loop.
+- The default, **Automatic**, tells the two cases apart from the door's
+  movement: a door reopening partway through closing gets its power turned
+  off; a lingering pet opening it from the bottom gets its sensors paused.
+  `sensors` keeps the previous behavior.
+- The power is only cut with the door at the bottom, since a Power Pet door
+  drops closed when its power goes off.
+
 ## 1.0.2
 
 - Settings schema: required fields are now listed the standard JSON Schema

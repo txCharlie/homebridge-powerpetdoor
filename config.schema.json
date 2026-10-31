@@ -138,7 +138,7 @@
                   ]
                 }
               ],
-              "description": "Automatic turns the power off when the door keeps reopening by itself as it closes (for example a worn sweep or something caught under the flap), which pausing the sensors can't stop, and pauses the sensors when a lingering pet keeps opening it. The power is only turned off with the door at the bottom, and is turned back on when the pause ends."
+              "description": "Automatic turns the power off when the door keeps reversing before it reaches the bottom (for example something caught under the flap), and pauses the sensors otherwise. If your door closes fully and then goes straight back up, choose Turn the power off: that stops any kind of cycling. The power is only turned off with the door at the bottom, and is turned back on when the pause ends."
             },
             "chatterSensor": {
               "title": "Sensor to pause (when pausing sensors)",

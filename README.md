@@ -108,10 +108,11 @@ If the door opens **5 times within 60 seconds** (`chatterOpens`, `chatterWindowS
 
 | `chatterAction` | During a pause |
 |---|---|
-| `auto` *(default)* | If the door has mostly been reopening by itself as it closes, the **power** is turned off. Otherwise the **sensors** are paused. |
+| `auto` *(default)* | If the door has mostly been reversing before it reaches the bottom, the **power** is turned off. Otherwise the **sensors** are paused. |
 | `sensors` | The sensor chosen by `chatterSensor` (inside, outside, or both) is turned off. |
 | `power` | The door's power is turned off. |
 
+- **If your door closes fully and then goes straight back up, use `power`.** Automatic can only spot a reversal that happens before the door reports it's closed; when it can't tell, it pauses the sensors, which won't stop that kind of cycling. When Automatic pauses the sensors, the log says so and points to this setting.
 - Turning the power off is the only thing that stops a door that keeps reversing. A Power Pet door drops closed when its power goes off, so the guard only cuts the power with the door at the bottom (right as it reverses, or once it's closed), never with it raised.
 - If your pet can still open the door while the sensors are paused, the outside sensor is probably picking up the collar through the door. Lower the outside sensor's range in High Tech Pet's app, or set `chatterSensor` to `both`. With `both`, a pet that's outside when a pause starts has to wait for it to end to come back in.
 - Openings you trigger from Apple Home don't count. A door held open by a pet standing in the doorway counts as one opening, not many.

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.1
+
+- Fix: with the chatter guard set to turn the power off, the power was
+  never turned off on doors that report a reversal straight into
+  `DOOR_SLOWING` without `DOOR_RISING` or `DOOR_CLOSED`. The guard waited
+  for a "safe moment" those doors never report. The power now goes off as
+  soon as the guard triggers: a Power Pet door lowers itself slowly when
+  its power goes off, wherever it is.
+
 ## 1.1.0
 
 - Chatter guard: new **When the door keeps opening** setting
@@ -11,8 +20,6 @@
   movement: a door reopening partway through closing gets its power turned
   off; a lingering pet opening it from the bottom gets its sensors paused.
   `sensors` keeps the previous behavior.
-- The power is only cut with the door at the bottom, since a Power Pet door
-  drops closed when its power goes off.
 
 ## 1.0.2
 
